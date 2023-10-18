@@ -345,7 +345,6 @@ Editor::Editor ()
 	, have_pending_keyboard_selection (false)
 	, pending_keyboard_selection_start (0)
 	, ignore_gui_changes (false)
-	, _drags (new DragManager (this))
 	, lock_dialog (0)
 	  /* , last_event_time { 0, 0 } */ /* this initialization style requires C++11 */
 	, _dragging_playhead (false)
@@ -391,7 +390,6 @@ Editor::Editor ()
 	, transport_preroll_rect (0)
 	, transport_postroll_rect (0)
 	, temp_location (0)
-	, rubberband_rect (0)
 	, _route_groups (0)
 	, _routes (0)
 	, _regions (0)
@@ -3416,8 +3414,8 @@ Editor::begin_selection_op_history ()
 }
 
 void
-Editor::begin_reversible_selection_op (string name)
-{
+Editor::begin_reversible_selection_op (string name){
+
 	if (_session) {
 		//cerr << name << endl;
 		/* begin/commit pairs can be nested */
@@ -6579,31 +6577,3 @@ Editor::duration_to_pixels_unrounded (timecnt_t const & dur) const
 	return sample_to_pixel_unrounded (dur.samples());
 }
 
-Temporal::TimeDomain
-Editor::default_time_domain () const
-{
-	if (_session) {
-		return _session->config.get_default_time_domain();
-	}
-
-	/* Probably never reached */
-
-	if (_snap_mode == SnapOff) {
-		return AudioTime;
-	}
-
-	switch (_grid_type) {
-		case GridTypeNone:
-			/* fallthrough */
-		case GridTypeMinSec:
-			/* fallthrough */
-		case GridTypeCDFrame:
-			/* fallthrough */
-		case GridTypeTimecode:
-			/* fallthrough */
-			return AudioTime;
-		default:
-			break;
-	}
-	return BeatTime;
-}

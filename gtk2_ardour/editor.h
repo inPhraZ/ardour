@@ -173,8 +173,6 @@ public:
 
 	bool pending_locate_request() const { return _pending_locate_request; }
 
-	Temporal::TimeDomain default_time_domain() const;
-
 	samplepos_t leftmost_sample() const { return _leftmost_sample; }
 
 	samplecnt_t current_page_samples() const {
@@ -501,6 +499,7 @@ public:
 	void abort_reversible_selection_op ();
 	void undo_selection_op ();
 	void redo_selection_op ();
+
 	void begin_reversible_command (std::string cmd_name);
 	void begin_reversible_command (GQuark);
 	void abort_reversible_command ();
@@ -509,13 +508,6 @@ public:
 	MixerStrip* get_current_mixer_strip () const {
 		return current_mixer_strip;
 	}
-
-	DragManager* drags () const {
-		return _drags;
-	}
-
-	bool drag_active () const;
-	bool preview_video_drag_active () const;
 
 	void maybe_autoscroll (bool, bool, bool);
 	bool autoscroll_active() const;
@@ -1625,8 +1617,6 @@ private:
 
 	bool ignore_gui_changes;
 
-	DragManager* _drags;
-
 	void escape ();
 	void lock ();
 	void unlock ();
@@ -2074,8 +2064,6 @@ private:
 	/* object rubberband select process */
 
 	void select_all_within (Temporal::timepos_t const &, Temporal::timepos_t const &, double, double, TrackViewList const &, Selection::Operation, bool);
-
-	ArdourCanvas::Rectangle* rubberband_rect;
 
 	EditorRouteGroups* _route_groups;
 	EditorRoutes*      _routes;
