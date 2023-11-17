@@ -641,7 +641,6 @@ private:
 	void start_visual_state_op (uint32_t n);
 	void cancel_visual_state_op (uint32_t n);
 
-	samplepos_t       _leftmost_sample;
 	samplecnt_t        samples_per_pixel;
 	Editing::ZoomFocus zoom_focus;
 
@@ -1954,7 +1953,6 @@ private:
 		return stretch_marker_cb.get_active ();
 	}
 
-	ArdourWidgets::ArdourButton snap_mode_button;
 	bool snap_mode_button_clicked (GdkEventButton*);
 
 	Gtk::HBox snap_box;
