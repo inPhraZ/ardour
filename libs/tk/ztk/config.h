@@ -1,5 +1,5 @@
 /* always defined to indicate that i18n is enabled */
-//#define ENABLE_NLS 1
+#undef ENABLE_NLS
 
 /* Define the gettext package to be used */
 #define GETTEXT_PACKAGE "atk10"

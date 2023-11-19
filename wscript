@@ -365,6 +365,7 @@ i18n_children = [
         'gtk2_ardour',
         'libs/ardour',
         'libs/gtkmm2ext',
+        'libs/tk/ytk',
 ]
 
 def set_compiler_flags (conf,opt):

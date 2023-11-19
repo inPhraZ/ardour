@@ -1,9 +1,6 @@
 /* always defined to indicate that i18n is enabled */
 /* #undef ENABLE_NLS */
 
-/* The prefix for our gettext translation domains. */
-#define GETTEXT_PACKAGE "gtk20"
-
 /* Define the location where the catalogs will be installed */
 #define GTK_LOCALEDIR "/ardour/share/locale"
 

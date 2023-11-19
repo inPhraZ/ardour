@@ -1,5 +1,5 @@
 /* always defined to indicate that i18n is enabled */
-/* #undef ENABLE_NLS */
+#undef ENABLE_NLS
 
 /* The prefix for our gettext translation domains. */
 #define GETTEXT_PACKAGE "gtk20"
