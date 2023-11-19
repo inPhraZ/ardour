@@ -740,14 +740,8 @@ extern __typeof (gtk_attach_options_get_type) gtk_attach_options_get_type __attr
 #undef gtk_builder_error_get_type 
 extern __typeof (gtk_builder_error_get_type) gtk_builder_error_get_type __attribute((alias("IA__gtk_builder_error_get_type"), visibility("default")));
 
-#undef gtk_button_action_get_type 
-extern __typeof (gtk_button_action_get_type) gtk_button_action_get_type __attribute((alias("IA__gtk_button_action_get_type"), visibility("default")));
-
 #undef gtk_buttons_type_get_type 
 extern __typeof (gtk_buttons_type_get_type) gtk_buttons_type_get_type __attribute((alias("IA__gtk_buttons_type_get_type"), visibility("default")));
-
-#undef gtk_calendar_display_options_get_type 
-extern __typeof (gtk_calendar_display_options_get_type) gtk_calendar_display_options_get_type __attribute((alias("IA__gtk_calendar_display_options_get_type"), visibility("default")));
 
 #undef gtk_cell_renderer_mode_get_type 
 extern __typeof (gtk_cell_renderer_mode_get_type) gtk_cell_renderer_mode_get_type __attribute((alias("IA__gtk_cell_renderer_mode_get_type"), visibility("default")));
@@ -772,9 +766,6 @@ extern __typeof (gtk_dest_defaults_get_type) gtk_dest_defaults_get_type __attrib
 
 #undef gtk_drag_result_get_type 
 extern __typeof (gtk_drag_result_get_type) gtk_drag_result_get_type __attribute((alias("IA__gtk_drag_result_get_type"), visibility("default")));
-
-#undef gtk_clist_drag_pos_get_type 
-extern __typeof (gtk_clist_drag_pos_get_type) gtk_clist_drag_pos_get_type __attribute((alias("IA__gtk_clist_drag_pos_get_type"), visibility("default")));
 
 #undef gtk_dialog_flags_get_type 
 extern __typeof (gtk_dialog_flags_get_type) gtk_dialog_flags_get_type __attribute((alias("IA__gtk_dialog_flags_get_type"), visibility("default")));
@@ -827,21 +818,6 @@ extern __typeof (gtk_tree_view_drop_position_get_type) gtk_tree_view_drop_positi
 #undef gtk_button_box_style_get_type 
 extern __typeof (gtk_button_box_style_get_type) gtk_button_box_style_get_type __attribute((alias("IA__gtk_button_box_style_get_type"), visibility("default")));
 
-#undef gtk_cell_type_get_type 
-extern __typeof (gtk_cell_type_get_type) gtk_cell_type_get_type __attribute((alias("IA__gtk_cell_type_get_type"), visibility("default")));
-
-#undef gtk_ctree_expander_style_get_type 
-extern __typeof (gtk_ctree_expander_style_get_type) gtk_ctree_expander_style_get_type __attribute((alias("IA__gtk_ctree_expander_style_get_type"), visibility("default")));
-
-#undef gtk_ctree_expansion_type_get_type 
-extern __typeof (gtk_ctree_expansion_type_get_type) gtk_ctree_expansion_type_get_type __attribute((alias("IA__gtk_ctree_expansion_type_get_type"), visibility("default")));
-
-#undef gtk_ctree_line_style_get_type 
-extern __typeof (gtk_ctree_line_style_get_type) gtk_ctree_line_style_get_type __attribute((alias("IA__gtk_ctree_line_style_get_type"), visibility("default")));
-
-#undef gtk_ctree_pos_get_type 
-extern __typeof (gtk_ctree_pos_get_type) gtk_ctree_pos_get_type __attribute((alias("IA__gtk_ctree_pos_get_type"), visibility("default")));
-
 #undef gtk_curve_type_get_type 
 extern __typeof (gtk_curve_type_get_type) gtk_curve_type_get_type __attribute((alias("IA__gtk_curve_type_get_type"), visibility("default")));
 
@@ -884,17 +860,11 @@ extern __typeof (gtk_pack_type_get_type) gtk_pack_type_get_type __attribute((ali
 #undef gtk_page_orientation_get_type 
 extern __typeof (gtk_page_orientation_get_type) gtk_page_orientation_get_type __attribute((alias("IA__gtk_page_orientation_get_type"), visibility("default")));
 
-#undef gtk_print_operation_result_get_type 
-extern __typeof (gtk_print_operation_result_get_type) gtk_print_operation_result_get_type __attribute((alias("IA__gtk_print_operation_result_get_type"), visibility("default")));
-
 #undef gtk_print_pages_get_type 
 extern __typeof (gtk_print_pages_get_type) gtk_print_pages_get_type __attribute((alias("IA__gtk_print_pages_get_type"), visibility("default")));
 
 #undef gtk_print_quality_get_type 
 extern __typeof (gtk_print_quality_get_type) gtk_print_quality_get_type __attribute((alias("IA__gtk_print_quality_get_type"), visibility("default")));
-
-#undef gtk_print_status_get_type 
-extern __typeof (gtk_print_status_get_type) gtk_print_status_get_type __attribute((alias("IA__gtk_print_status_get_type"), visibility("default")));
 
 #undef gtk_page_set_get_type 
 extern __typeof (gtk_page_set_get_type) gtk_page_set_get_type __attribute((alias("IA__gtk_page_set_get_type"), visibility("default")));
@@ -917,14 +887,8 @@ extern __typeof (gtk_preview_type_get_type) gtk_preview_type_get_type __attribut
 #undef gtk_print_duplex_get_type 
 extern __typeof (gtk_print_duplex_get_type) gtk_print_duplex_get_type __attribute((alias("IA__gtk_print_duplex_get_type"), visibility("default")));
 
-#undef gtk_print_error_get_type 
-extern __typeof (gtk_print_error_get_type) gtk_print_error_get_type __attribute((alias("IA__gtk_print_error_get_type"), visibility("default")));
-
 #undef gtk_recent_filter_flags_get_type 
 extern __typeof (gtk_recent_filter_flags_get_type) gtk_recent_filter_flags_get_type __attribute((alias("IA__gtk_recent_filter_flags_get_type"), visibility("default")));
-
-#undef gtk_print_operation_action_get_type 
-extern __typeof (gtk_print_operation_action_get_type) gtk_print_operation_action_get_type __attribute((alias("IA__gtk_print_operation_action_get_type"), visibility("default")));
 
 #undef gtk_private_flags_get_type 
 extern __typeof (gtk_private_flags_get_type) gtk_private_flags_get_type __attribute((alias("IA__gtk_private_flags_get_type"), visibility("default")));
@@ -1018,9 +982,6 @@ extern __typeof (gtk_tool_palette_drag_targets_get_type) gtk_tool_palette_drag_t
 
 #undef gtk_tree_model_flags_get_type 
 extern __typeof (gtk_tree_model_flags_get_type) gtk_tree_model_flags_get_type __attribute((alias("IA__gtk_tree_model_flags_get_type"), visibility("default")));
-
-#undef gtk_tree_view_mode_get_type 
-extern __typeof (gtk_tree_view_mode_get_type) gtk_tree_view_mode_get_type __attribute((alias("IA__gtk_tree_view_mode_get_type"), visibility("default")));
 
 #undef gtk_tree_view_grid_lines_get_type 
 extern __typeof (gtk_tree_view_grid_lines_get_type) gtk_tree_view_grid_lines_get_type __attribute((alias("IA__gtk_tree_view_grid_lines_get_type"), visibility("default")));

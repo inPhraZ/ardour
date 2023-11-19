@@ -62,13 +62,7 @@ gtk_builder_error_get_type (void)
     }
     return etype;
 }
-/* enumerations from "gtkcalendar.h" */
-GType
-gtk_calendar_display_options_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
+
 /* enumerations from "gtkcellrenderer.h" */
 GType
 gtk_cell_renderer_state_get_type (void)
@@ -117,50 +111,8 @@ gtk_cell_renderer_accel_mode_get_type (void)
     }
     return etype;
 }
-/* enumerations from "gtkclist.h" */
-GType
-gtk_cell_type_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-GType
-gtk_clist_drag_pos_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-GType
-gtk_button_action_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-/* enumerations from "gtkctree.h" */
-GType
-gtk_ctree_pos_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-GType
-gtk_ctree_line_style_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-GType
-gtk_ctree_expander_style_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-GType
-gtk_ctree_expansion_type_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
+
+
 /* enumerations from "gtkdebug.h" */
 GType
 gtk_debug_flag_get_type (void)
@@ -1408,30 +1360,7 @@ gtk_arg_flags_get_type (void)
     }
     return etype;
 }
-/* enumerations from "gtkprintoperation.h" */
-GType
-gtk_print_status_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-GType
-gtk_print_operation_result_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-GType
-gtk_print_operation_action_get_type (void)
-{
-    static GType etype = 0;
-    return etype;
-}
-GType
-gtk_print_error_get_type (void)
-{
-    static GType etype = 0;
-}
+
 /* enumerations from "gtkprivate.h" */
 GType
 gtk_private_flags_get_type (void)
@@ -1775,13 +1704,6 @@ gtk_tool_palette_drag_targets_get_type (void)
         };
         etype = g_flags_register_static (g_intern_static_string ("GtkToolPaletteDragTargets"), values);
     }
-    return etype;
-}
-/* enumerations from "gtktree.h" */
-GType
-gtk_tree_view_mode_get_type (void)
-{
-    static GType etype = 0;
     return etype;
 }
 /* enumerations from "gtktreemodel.h" */

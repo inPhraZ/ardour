@@ -24,10 +24,6 @@ GType gtk_assistant_page_type_get_type (void) G_GNUC_CONST;
 GType gtk_builder_error_get_type (void) G_GNUC_CONST;
 #define GTK_TYPE_BUILDER_ERROR (gtk_builder_error_get_type ())
 
-/* enumerations from "gtkcalendar.h" */
-GType gtk_calendar_display_options_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_CALENDAR_DISPLAY_OPTIONS (gtk_calendar_display_options_get_type ())
-
 /* enumerations from "gtkcellrenderer.h" */
 GType gtk_cell_renderer_state_get_type (void) G_GNUC_CONST;
 #define GTK_TYPE_CELL_RENDERER_STATE (gtk_cell_renderer_state_get_type ())
@@ -37,24 +33,6 @@ GType gtk_cell_renderer_mode_get_type (void) G_GNUC_CONST;
 /* enumerations from "gtkcellrendereraccel.h" */
 GType gtk_cell_renderer_accel_mode_get_type (void) G_GNUC_CONST;
 #define GTK_TYPE_CELL_RENDERER_ACCEL_MODE (gtk_cell_renderer_accel_mode_get_type ())
-
-/* enumerations from "gtkclist.h" */
-GType gtk_cell_type_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_CELL_TYPE (gtk_cell_type_get_type ())
-GType gtk_clist_drag_pos_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_CLIST_DRAG_POS (gtk_clist_drag_pos_get_type ())
-GType gtk_button_action_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_BUTTON_ACTION (gtk_button_action_get_type ())
-
-/* enumerations from "gtkctree.h" */
-GType gtk_ctree_pos_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_CTREE_POS (gtk_ctree_pos_get_type ())
-GType gtk_ctree_line_style_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_CTREE_LINE_STYLE (gtk_ctree_line_style_get_type ())
-GType gtk_ctree_expander_style_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_CTREE_EXPANDER_STYLE (gtk_ctree_expander_style_get_type ())
-GType gtk_ctree_expansion_type_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_CTREE_EXPANSION_TYPE (gtk_ctree_expansion_type_get_type ())
 
 /* enumerations from "gtkdebug.h" */
 GType gtk_debug_flag_get_type (void) G_GNUC_CONST;
@@ -230,16 +208,6 @@ GType gtk_object_flags_get_type (void) G_GNUC_CONST;
 GType gtk_arg_flags_get_type (void) G_GNUC_CONST;
 #define GTK_TYPE_ARG_FLAGS (gtk_arg_flags_get_type ())
 
-/* enumerations from "gtkprintoperation.h" */
-GType gtk_print_status_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_PRINT_STATUS (gtk_print_status_get_type ())
-GType gtk_print_operation_result_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_PRINT_OPERATION_RESULT (gtk_print_operation_result_get_type ())
-GType gtk_print_operation_action_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_PRINT_OPERATION_ACTION (gtk_print_operation_action_get_type ())
-GType gtk_print_error_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_PRINT_ERROR (gtk_print_error_get_type ())
-
 /* enumerations from "gtkprivate.h" */
 GType gtk_private_flags_get_type (void) G_GNUC_CONST;
 #define GTK_TYPE_PRIVATE_FLAGS (gtk_private_flags_get_type ())
@@ -301,10 +269,6 @@ GType gtk_toolbar_space_style_get_type (void) G_GNUC_CONST;
 /* enumerations from "gtktoolpalette.h" */
 GType gtk_tool_palette_drag_targets_get_type (void) G_GNUC_CONST;
 #define GTK_TYPE_TOOL_PALETTE_DRAG_TARGETS (gtk_tool_palette_drag_targets_get_type ())
-
-/* enumerations from "gtktree.h" */
-GType gtk_tree_view_mode_get_type (void) G_GNUC_CONST;
-#define GTK_TYPE_TREE_VIEW_MODE (gtk_tree_view_mode_get_type ())
 
 /* enumerations from "gtktreemodel.h" */
 GType gtk_tree_model_flags_get_type (void) G_GNUC_CONST;
