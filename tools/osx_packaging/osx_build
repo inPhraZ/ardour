@@ -391,7 +391,9 @@ cp $BUILD_ROOT/libs/vamp-plugins/libardourvampplugins.dylib $Frameworks
 cp $BUILD_ROOT/libs/vamp-pyin/libardourvamppyin.dylib $Frameworks
 
 # Suil modules (new dir 'build-stack')
-if test -d $GTKSTACK_ROOT/lib/suil-0/ ; then
+if test -d $BUILD_ROOT/libs/tk/suil/ ; then
+	cp $BUILD_ROOT/libs/tk/suil/libsuil_cocoa_in_gtk2 $Frameworks
+elif test -d $GTKSTACK_ROOT/lib/suil-0/ ; then
 	cp $GTKSTACK_ROOT/lib/suil-0/lib* $Frameworks
 fi
 
