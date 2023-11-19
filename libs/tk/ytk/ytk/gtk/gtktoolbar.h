@@ -41,14 +41,6 @@
 #include <gtk/gtktooltips.h>
 #include <gtk/gtktoolitem.h>
 
-#ifndef GTK_DISABLE_DEPRECATED
-
-/* Not needed, retained for compatibility -Yosh */
-#include <gtk/gtkpixmap.h>
-#include <gtk/gtksignal.h>
-
-#endif /* GTK_DISABLE_DEPRECATED */
-
 G_BEGIN_DECLS
 
 #define GTK_TYPE_TOOLBAR            (gtk_toolbar_get_type ())

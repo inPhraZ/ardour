@@ -209,27 +209,9 @@
 #include <gtk/gtkwidget.h>
 #include <gtk/gtkwindow.h>
 
-/* Broken */
-#include <gtk/gtktext.h>
-#include <gtk/gtktree.h>
-#include <gtk/gtktreeitem.h>
-
 /* Deprecated */
-#include <gtk/gtkclist.h>
-#include <gtk/gtkcombo.h>
-#include <gtk/gtkctree.h>
-#include <gtk/gtkfilesel.h>
-#include <gtk/gtkinputdialog.h>
-#include <gtk/gtkitemfactory.h>
-#include <gtk/gtklist.h>
-#include <gtk/gtklistitem.h>
-#include <gtk/gtkoldeditable.h>
 #include <gtk/gtkoptionmenu.h>
-#include <gtk/gtkpixmap.h>
-#include <gtk/gtkpreview.h>
 #include <gtk/gtkprogress.h>
-#include <gtk/gtksignal.h>
-#include <gtk/gtktipsquery.h>
 #include <gtk/gtktooltips.h>
 
 #undef __GTK_H_INSIDE__

@@ -46,9 +46,6 @@
 #include "gtkmm/clipboard.h"
 #include "gtkmm/colorbutton.h"
 #include "gtkmm/colorselection.h"
-#ifndef GTKMM_DISABLE_DEPRECATED
-#include "gtkmm/combo.h"
-#endif // *_DISABLE_DEPRECATED
 #include "gtkmm/combobox.h"
 #ifndef GTKMM_DISABLE_DEPRECATED
 #include "gtkmm/comboboxentry.h"
@@ -68,9 +65,6 @@
 #include "gtkmm/filechooserdialog.h"
 #include "gtkmm/filechooserwidget.h"
 #include "gtkmm/filefilter.h"
-#ifndef GTKMM_DISABLE_DEPRECATED
-#include "gtkmm/fileselection.h"
-#endif // *_DISABLE_DEPRECATED
 #include "gtkmm/fixed.h"
 #include "gtkmm/fontbutton.h"
 #include "gtkmm/fontselection.h"
@@ -85,9 +79,6 @@
 #include "gtkmm/image.h"
 #include "gtkmm/imagemenuitem.h"
 #include "gtkmm/infobar.h"
-#ifndef GTKMM_DISABLE_DEPRECATED
-#include "gtkmm/inputdialog.h"
-#endif // *_DISABLE_DEPRECATED
 #include "gtkmm/invisible.h"
 #include "gtkmm/item.h"
 #include "gtkmm/label.h"
@@ -230,11 +221,6 @@ GType gtk_clipboard_get_type(void);
 GType gtk_color_button_get_type(void);
 GType gtk_color_selection_get_type(void);
 GType gtk_color_selection_dialog_get_type(void);
-#ifndef GTKMM_DISABLE_DEPRECATED
-GType gtk_list_item_get_type(void);
-GType gtk_list_get_type(void);
-GType gtk_combo_get_type(void);
-#endif // *_DISABLE_DEPRECATED
 GType gtk_combo_box_get_type(void);
 #ifndef GTKMM_DISABLE_DEPRECATED
 GType gtk_combo_box_entry_get_type(void);
@@ -266,9 +252,6 @@ GType gtk_icon_view_get_type(void);
 GType gtk_image_get_type(void);
 GType gtk_image_menu_item_get_type(void);
 GType gtk_info_bar_get_type(void);
-#ifndef GTKMM_DISABLE_DEPRECATED
-GType gtk_input_dialog_get_type(void);
-#endif // *_DISABLE_DEPRECATED
 GType gtk_invisible_get_type(void);
 GType gtk_item_get_type(void);
 GType gtk_label_get_type(void);
@@ -418,11 +401,6 @@ class Clipboard_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class ColorButton_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class ColorSelection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class ColorSelectionDialog_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-#ifndef GTKMM_DISABLE_DEPRECATED
-class ComboDropDownItem_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ComboDropDown_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Combo_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-#endif // *_DISABLE_DEPRECATED
 class ComboBox_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 #ifndef GTKMM_DISABLE_DEPRECATED
 class ComboBoxEntry_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
@@ -439,9 +417,6 @@ class FileChooserButton_Class { public: static Glib::ObjectBase* wrap_new(GObjec
 class FileChooserDialog_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class FileChooserWidget_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class FileFilter_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-#ifndef GTKMM_DISABLE_DEPRECATED
-class FileSelection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-#endif // *_DISABLE_DEPRECATED
 class Fixed_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class FontButton_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class FontSelection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
@@ -601,18 +576,11 @@ void wrap_init()
   Glib::wrap_register(gtk_color_button_get_type(), &ColorButton_Class::wrap_new);
   Glib::wrap_register(gtk_color_selection_get_type(), &ColorSelection_Class::wrap_new);
   Glib::wrap_register(gtk_color_selection_dialog_get_type(), &ColorSelectionDialog_Class::wrap_new);
-#ifndef GTKMM_DISABLE_DEPRECATED
-  Glib::wrap_register(gtk_list_item_get_type(), &ComboDropDownItem_Class::wrap_new);
-  Glib::wrap_register(gtk_list_get_type(), &ComboDropDown_Class::wrap_new);
-  Glib::wrap_register(gtk_combo_get_type(), &Combo_Class::wrap_new);
-#endif // *_DISABLE_DEPRECATED
   Glib::wrap_register(gtk_combo_box_get_type(), &ComboBox_Class::wrap_new);
 #ifndef GTKMM_DISABLE_DEPRECATED
   Glib::wrap_register(gtk_combo_box_entry_get_type(), &ComboBoxEntry_Class::wrap_new);
 #endif // *_DISABLE_DEPRECATED
   Glib::wrap_register(gtk_container_get_type(), &Container_Class::wrap_new);
-#ifndef GTKMM_DISABLE_DEPRECATED
-#endif // *_DISABLE_DEPRECATED
   Glib::wrap_register(gtk_dialog_get_type(), &Dialog_Class::wrap_new);
   Glib::wrap_register(gtk_drawing_area_get_type(), &DrawingArea_Class::wrap_new);
   Glib::wrap_register(gtk_entry_get_type(), &Entry_Class::wrap_new);
@@ -624,9 +592,6 @@ void wrap_init()
   Glib::wrap_register(gtk_file_chooser_dialog_get_type(), &FileChooserDialog_Class::wrap_new);
   Glib::wrap_register(gtk_file_chooser_widget_get_type(), &FileChooserWidget_Class::wrap_new);
   Glib::wrap_register(gtk_file_filter_get_type(), &FileFilter_Class::wrap_new);
-#ifndef GTKMM_DISABLE_DEPRECATED
-  Glib::wrap_register(gtk_file_selection_get_type(), &FileSelection_Class::wrap_new);
-#endif // *_DISABLE_DEPRECATED
   Glib::wrap_register(gtk_fixed_get_type(), &Fixed_Class::wrap_new);
   Glib::wrap_register(gtk_font_button_get_type(), &FontButton_Class::wrap_new);
   Glib::wrap_register(gtk_font_selection_get_type(), &FontSelection_Class::wrap_new);
@@ -639,9 +604,6 @@ void wrap_init()
   Glib::wrap_register(gtk_image_get_type(), &Image_Class::wrap_new);
   Glib::wrap_register(gtk_image_menu_item_get_type(), &ImageMenuItem_Class::wrap_new);
   Glib::wrap_register(gtk_info_bar_get_type(), &InfoBar_Class::wrap_new);
-#ifndef GTKMM_DISABLE_DEPRECATED
-  Glib::wrap_register(gtk_input_dialog_get_type(), &InputDialog_Class::wrap_new);
-#endif // *_DISABLE_DEPRECATED
   Glib::wrap_register(gtk_invisible_get_type(), &Invisible_Class::wrap_new);
   Glib::wrap_register(gtk_item_get_type(), &Item_Class::wrap_new);
   Glib::wrap_register(gtk_label_get_type(), &Label_Class::wrap_new);
@@ -775,11 +737,6 @@ void wrap_init()
   ColorButton::get_type();
   ColorSelection::get_type();
   ColorSelectionDialog::get_type();
-#ifndef GTKMM_DISABLE_DEPRECATED
-  ComboDropDownItem::get_type();
-  ComboDropDown::get_type();
-  Combo::get_type();
-#endif // *_DISABLE_DEPRECATED
   ComboBox::get_type();
 #ifndef GTKMM_DISABLE_DEPRECATED
   ComboBoxEntry::get_type();
@@ -796,9 +753,6 @@ void wrap_init()
   FileChooserDialog::get_type();
   FileChooserWidget::get_type();
   FileFilter::get_type();
-#ifndef GTKMM_DISABLE_DEPRECATED
-  FileSelection::get_type();
-#endif // *_DISABLE_DEPRECATED
   Fixed::get_type();
   FontButton::get_type();
   FontSelection::get_type();
@@ -811,9 +765,6 @@ void wrap_init()
   Image::get_type();
   ImageMenuItem::get_type();
   InfoBar::get_type();
-#ifndef GTKMM_DISABLE_DEPRECATED
-  InputDialog::get_type();
-#endif // *_DISABLE_DEPRECATED
   Invisible::get_type();
   Item::get_type();
   Label::get_type();

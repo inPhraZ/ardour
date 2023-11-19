@@ -122,49 +122,18 @@ GType
 gtk_cell_type_get_type (void)
 {
     static GType etype = 0;
-    if (G_UNLIKELY(etype == 0)) {
-        static const GEnumValue values[] = {
-            { GTK_CELL_EMPTY, "GTK_CELL_EMPTY", "empty" },
-            { GTK_CELL_TEXT, "GTK_CELL_TEXT", "text" },
-            { GTK_CELL_PIXMAP, "GTK_CELL_PIXMAP", "pixmap" },
-            { GTK_CELL_PIXTEXT, "GTK_CELL_PIXTEXT", "pixtext" },
-            { GTK_CELL_WIDGET, "GTK_CELL_WIDGET", "widget" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static (g_intern_static_string ("GtkCellType"), values);
-    }
     return etype;
 }
 GType
 gtk_clist_drag_pos_get_type (void)
 {
     static GType etype = 0;
-    if (G_UNLIKELY(etype == 0)) {
-        static const GEnumValue values[] = {
-            { GTK_CLIST_DRAG_NONE, "GTK_CLIST_DRAG_NONE", "none" },
-            { GTK_CLIST_DRAG_BEFORE, "GTK_CLIST_DRAG_BEFORE", "before" },
-            { GTK_CLIST_DRAG_INTO, "GTK_CLIST_DRAG_INTO", "into" },
-            { GTK_CLIST_DRAG_AFTER, "GTK_CLIST_DRAG_AFTER", "after" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static (g_intern_static_string ("GtkCListDragPos"), values);
-    }
     return etype;
 }
 GType
 gtk_button_action_get_type (void)
 {
     static GType etype = 0;
-    if (G_UNLIKELY(etype == 0)) {
-        static const GFlagsValue values[] = {
-            { GTK_BUTTON_IGNORED, "GTK_BUTTON_IGNORED", "ignored" },
-            { GTK_BUTTON_SELECTS, "GTK_BUTTON_SELECTS", "selects" },
-            { GTK_BUTTON_DRAGS, "GTK_BUTTON_DRAGS", "drags" },
-            { GTK_BUTTON_EXPANDS, "GTK_BUTTON_EXPANDS", "expands" },
-            { 0, NULL, NULL }
-        };
-        etype = g_flags_register_static (g_intern_static_string ("GtkButtonAction"), values);
-    }
     return etype;
 }
 /* enumerations from "gtkctree.h" */
@@ -172,65 +141,24 @@ GType
 gtk_ctree_pos_get_type (void)
 {
     static GType etype = 0;
-    if (G_UNLIKELY(etype == 0)) {
-        static const GEnumValue values[] = {
-            { GTK_CTREE_POS_BEFORE, "GTK_CTREE_POS_BEFORE", "before" },
-            { GTK_CTREE_POS_AS_CHILD, "GTK_CTREE_POS_AS_CHILD", "as-child" },
-            { GTK_CTREE_POS_AFTER, "GTK_CTREE_POS_AFTER", "after" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static (g_intern_static_string ("GtkCTreePos"), values);
-    }
     return etype;
 }
 GType
 gtk_ctree_line_style_get_type (void)
 {
     static GType etype = 0;
-    if (G_UNLIKELY(etype == 0)) {
-        static const GEnumValue values[] = {
-            { GTK_CTREE_LINES_NONE, "GTK_CTREE_LINES_NONE", "none" },
-            { GTK_CTREE_LINES_SOLID, "GTK_CTREE_LINES_SOLID", "solid" },
-            { GTK_CTREE_LINES_DOTTED, "GTK_CTREE_LINES_DOTTED", "dotted" },
-            { GTK_CTREE_LINES_TABBED, "GTK_CTREE_LINES_TABBED", "tabbed" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static (g_intern_static_string ("GtkCTreeLineStyle"), values);
-    }
     return etype;
 }
 GType
 gtk_ctree_expander_style_get_type (void)
 {
     static GType etype = 0;
-    if (G_UNLIKELY(etype == 0)) {
-        static const GEnumValue values[] = {
-            { GTK_CTREE_EXPANDER_NONE, "GTK_CTREE_EXPANDER_NONE", "none" },
-            { GTK_CTREE_EXPANDER_SQUARE, "GTK_CTREE_EXPANDER_SQUARE", "square" },
-            { GTK_CTREE_EXPANDER_TRIANGLE, "GTK_CTREE_EXPANDER_TRIANGLE", "triangle" },
-            { GTK_CTREE_EXPANDER_CIRCULAR, "GTK_CTREE_EXPANDER_CIRCULAR", "circular" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static (g_intern_static_string ("GtkCTreeExpanderStyle"), values);
-    }
     return etype;
 }
 GType
 gtk_ctree_expansion_type_get_type (void)
 {
     static GType etype = 0;
-    if (G_UNLIKELY(etype == 0)) {
-        static const GEnumValue values[] = {
-            { GTK_CTREE_EXPANSION_EXPAND, "GTK_CTREE_EXPANSION_EXPAND", "expand" },
-            { GTK_CTREE_EXPANSION_EXPAND_RECURSIVE, "GTK_CTREE_EXPANSION_EXPAND_RECURSIVE", "expand-recursive" },
-            { GTK_CTREE_EXPANSION_COLLAPSE, "GTK_CTREE_EXPANSION_COLLAPSE", "collapse" },
-            { GTK_CTREE_EXPANSION_COLLAPSE_RECURSIVE, "GTK_CTREE_EXPANSION_COLLAPSE_RECURSIVE", "collapse-recursive" },
-            { GTK_CTREE_EXPANSION_TOGGLE, "GTK_CTREE_EXPANSION_TOGGLE", "toggle" },
-            { GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE, "GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE", "toggle-recursive" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static (g_intern_static_string ("GtkCTreeExpansionType"), values);
-    }
     return etype;
 }
 /* enumerations from "gtkdebug.h" */
@@ -1854,14 +1782,6 @@ GType
 gtk_tree_view_mode_get_type (void)
 {
     static GType etype = 0;
-    if (G_UNLIKELY(etype == 0)) {
-        static const GEnumValue values[] = {
-            { GTK_TREE_VIEW_LINE, "GTK_TREE_VIEW_LINE", "line" },
-            { GTK_TREE_VIEW_ITEM, "GTK_TREE_VIEW_ITEM", "item" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static (g_intern_static_string ("GtkTreeViewMode"), values);
-    }
     return etype;
 }
 /* enumerations from "gtktreemodel.h" */
