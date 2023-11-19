@@ -168,7 +168,6 @@ libytk_sources = [
     'gtkscrollbar.c',
     'gtkscrolledwindow.c',
     'gtksearchengine.c',
-    #'gtksearchenginebeagle.c',
     'gtksearchenginesimple.c',
     'gtkselection.c',
     'gtkseparator.c',
@@ -182,7 +181,6 @@ libytk_sources = [
     'gtkspinbutton.c',
     'gtkspinner.c',
     'gtkstatusbar.c',
-    'gtkstatusicon.c',
     'gtkstock.c',
     'gtkstyle.c',
     'gtktable.c',
@@ -252,7 +250,6 @@ libytk_x11_sources = [
     'gtkplug-x11.c',
     'gtkrelocation.c',
     'gtksocket-x11.c',
-    'gtktrayicon-x11.c',
     'gtkxembed.c',
 ]
 

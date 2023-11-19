@@ -150,7 +150,6 @@
 #include "gtkmm/spinbutton.h"
 #include "gtkmm/spinner.h"
 #include "gtkmm/statusbar.h"
-#include "gtkmm/statusicon.h"
 #include "gtkmm/stockitem.h"
 #include "gtkmm/style.h"
 #include "gtkmm/table.h"
@@ -345,7 +344,6 @@ GType gtk_socket_get_type(void);
 GType gtk_spin_button_get_type(void);
 GType gtk_spinner_get_type(void);
 GType gtk_statusbar_get_type(void);
-GType gtk_status_icon_get_type(void);
 GType gtk_style_get_type(void);
 GType gtk_table_get_type(void);
 GType gtk_tearoff_menu_item_get_type(void);
@@ -538,7 +536,6 @@ class Socket_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class SpinButton_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class Spinner_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class Statusbar_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class StatusIcon_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class Style_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class Table_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class TearoffMenuItem_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
@@ -725,7 +722,6 @@ void wrap_init()
   Glib::wrap_register(gtk_spin_button_get_type(), &SpinButton_Class::wrap_new);
   Glib::wrap_register(gtk_spinner_get_type(), &Spinner_Class::wrap_new);
   Glib::wrap_register(gtk_statusbar_get_type(), &Statusbar_Class::wrap_new);
-  Glib::wrap_register(gtk_status_icon_get_type(), &StatusIcon_Class::wrap_new);
   Glib::wrap_register(gtk_style_get_type(), &Style_Class::wrap_new);
   Glib::wrap_register(gtk_table_get_type(), &Table_Class::wrap_new);
   Glib::wrap_register(gtk_tearoff_menu_item_get_type(), &TearoffMenuItem_Class::wrap_new);
@@ -903,7 +899,6 @@ void wrap_init()
   SpinButton::get_type();
   Spinner::get_type();
   Statusbar::get_type();
-  StatusIcon::get_type();
   Style::get_type();
   Table::get_type();
   TearoffMenuItem::get_type();

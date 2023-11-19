@@ -138,7 +138,6 @@ libytkmm_sources = [
     'spinbutton.cc',
     'spinner.cc',
     'statusbar.cc',
-    'statusicon.cc',
     'stock.cc',
     'stockid.cc',
     'stockitem.cc',

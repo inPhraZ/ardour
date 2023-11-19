@@ -202,7 +202,6 @@ extern const int gtkmm_micro_version;
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/spinner.h>
 #include <gtkmm/statusbar.h>
-#include <gtkmm/statusicon.h>
 #include <gtkmm/stock.h>
 #include <gtkmm/stockid.h>
 #include <gtkmm/stockitem.h>
