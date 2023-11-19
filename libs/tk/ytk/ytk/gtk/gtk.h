@@ -201,7 +201,6 @@
 #include <gtk/gtkvbox.h>
 #include <gtk/gtkversion.h>
 #include <gtk/gtkviewport.h>
-#include <gtk/gtkvolumebutton.h>
 #include <gtk/gtkvpaned.h>
 #include <gtk/gtkvruler.h>
 #include <gtk/gtkvscale.h>
@@ -219,9 +218,7 @@
 #include <gtk/gtkclist.h>
 #include <gtk/gtkcombo.h>
 #include <gtk/gtkctree.h>
-#include <gtk/gtkcurve.h>
 #include <gtk/gtkfilesel.h>
-#include <gtk/gtkgamma.h>
 #include <gtk/gtkinputdialog.h>
 #include <gtk/gtkitemfactory.h>
 #include <gtk/gtklist.h>

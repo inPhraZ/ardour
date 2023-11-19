@@ -54,9 +54,6 @@
 #include "gtkmm/comboboxentry.h"
 #endif // *_DISABLE_DEPRECATED
 #include "gtkmm/container.h"
-#ifndef GTKMM_DISABLE_DEPRECATED
-#include "gtkmm/curve.h"
-#endif // *_DISABLE_DEPRECATED
 #include "gtkmm/dialog.h"
 #include "gtkmm/drawingarea.h"
 #include "gtkmm/editable.h"
@@ -191,7 +188,6 @@
 #include "gtkmm/treeviewcolumn.h"
 #include "gtkmm/uimanager.h"
 #include "gtkmm/viewport.h"
-#include "gtkmm/volumebutton.h"
 #include "gtkmm/widget.h"
 #include "gtkmm/window.h"
 
@@ -244,10 +240,6 @@ GType gtk_combo_box_get_type(void);
 GType gtk_combo_box_entry_get_type(void);
 #endif // *_DISABLE_DEPRECATED
 GType gtk_container_get_type(void);
-#ifndef GTKMM_DISABLE_DEPRECATED
-GType gtk_curve_get_type(void);
-GType gtk_gamma_curve_get_type(void);
-#endif // *_DISABLE_DEPRECATED
 GType gtk_dialog_get_type(void);
 GType gtk_drawing_area_get_type(void);
 GType gtk_entry_get_type(void);
@@ -373,7 +365,6 @@ GType gtk_tree_view_get_type(void);
 GType gtk_tree_view_column_get_type(void);
 GType gtk_ui_manager_get_type(void);
 GType gtk_viewport_get_type(void);
-GType gtk_volume_button_get_type(void);
 GType gtk_widget_get_type(void);
 GType gtk_window_group_get_type(void);
 GType gtk_window_get_type(void);
@@ -437,10 +428,6 @@ class ComboBox_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class ComboBoxEntry_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 #endif // *_DISABLE_DEPRECATED
 class Container_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-#ifndef GTKMM_DISABLE_DEPRECATED
-class Curve_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class GammaCurve_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-#endif // *_DISABLE_DEPRECATED
 class Dialog_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class DrawingArea_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class Entry_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
@@ -565,7 +552,6 @@ class TreeView_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class TreeViewColumn_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class UIManager_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class Viewport_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class VolumeButton_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class Widget_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class WindowGroup_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
 class Window_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
@@ -626,8 +612,6 @@ void wrap_init()
 #endif // *_DISABLE_DEPRECATED
   Glib::wrap_register(gtk_container_get_type(), &Container_Class::wrap_new);
 #ifndef GTKMM_DISABLE_DEPRECATED
-  Glib::wrap_register(gtk_curve_get_type(), &Curve_Class::wrap_new);
-  Glib::wrap_register(gtk_gamma_curve_get_type(), &GammaCurve_Class::wrap_new);
 #endif // *_DISABLE_DEPRECATED
   Glib::wrap_register(gtk_dialog_get_type(), &Dialog_Class::wrap_new);
   Glib::wrap_register(gtk_drawing_area_get_type(), &DrawingArea_Class::wrap_new);
@@ -751,7 +735,6 @@ void wrap_init()
   Glib::wrap_register(gtk_tree_view_column_get_type(), &TreeViewColumn_Class::wrap_new);
   Glib::wrap_register(gtk_ui_manager_get_type(), &UIManager_Class::wrap_new);
   Glib::wrap_register(gtk_viewport_get_type(), &Viewport_Class::wrap_new);
-  Glib::wrap_register(gtk_volume_button_get_type(), &VolumeButton_Class::wrap_new);
   Glib::wrap_register(gtk_widget_get_type(), &Widget_Class::wrap_new);
   Glib::wrap_register(gtk_window_group_get_type(), &WindowGroup_Class::wrap_new);
   Glib::wrap_register(gtk_window_get_type(), &Window_Class::wrap_new);
@@ -802,10 +785,6 @@ void wrap_init()
   ComboBoxEntry::get_type();
 #endif // *_DISABLE_DEPRECATED
   Container::get_type();
-#ifndef GTKMM_DISABLE_DEPRECATED
-  Curve::get_type();
-  GammaCurve::get_type();
-#endif // *_DISABLE_DEPRECATED
   Dialog::get_type();
   DrawingArea::get_type();
   Entry::get_type();
@@ -928,7 +907,6 @@ void wrap_init()
   TreeViewColumn::get_type();
   UIManager::get_type();
   Viewport::get_type();
-  VolumeButton::get_type();
   Widget::get_type();
   WindowGroup::get_type();
   Window::get_type();
