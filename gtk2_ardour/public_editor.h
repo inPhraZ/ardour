@@ -456,9 +456,6 @@ public:
 
 	virtual void queue_redisplay_track_views () = 0;
 
-	virtual ARDOUR::Quantize* get_quantize_op () = 0;
-	virtual void apply_midi_note_edit_op (ARDOUR::MidiOperator& op, const RegionSelection& rs) = 0;
-
 	virtual void set_tempo_curve_range (double& max, double& min) const = 0;
 
 	/// Singleton instance, set up by Editor::Editor()
