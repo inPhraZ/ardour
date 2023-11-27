@@ -654,8 +654,9 @@ Session::create (const string& session_template, BusProfile const * bus_profile,
 				return rv;
 			}
 
-			if (Config->get_use_monitor_bus())
+			if (Config->get_use_monitor_bus()) {
 				add_monitor_section ();
+			}
 		}
 	}
 
@@ -4567,6 +4568,36 @@ Session::config_changed (std::string p, bool ours)
 				add_monitor_section ();
 			} else if (!want_ms && have_ms) {
 				remove_monitor_section ();
+			}
+		}
+	} else if (p == "use-surround-master") {
+		/* NB. This is always called when constructing a session,
+		 * after restoring session state (if any),
+		 * via post_engine_init() -> Config->map_parameters()
+		 */
+		bool want_sm = Config->get_use_surround_master();
+		bool have_sm = _surround_master ? true : false;
+		std::cerr << "have sm " << have_sm << " want sm " << want_sm << std::endl;
+		if (loading ()) {
+			/* When loading an existing session, the config "use-surround-master"
+			 * is ignored. Instead the sesion-state (xml) will have added the
+			 * "surround-master" and restored its state (and connections)
+			 * if the session has a surround master..
+			 * Update the config to reflect this.
+			 */
+			if (want_sm != have_sm) {
+				Config->set_use_surround_master (have_sm);
+			}
+			SurroundMasterAddedOrRemoved (); /* EMIT SIGNAL */
+		} else  {
+			/* Otherwise, Config::set_use_surround_master() does
+			 * control the the presence of the monitor-section
+			 * (new sessions, user initiated change)
+			 */
+			if (want_sm && !have_sm) {
+				add_surround_master ();
+			} else if (!want_sm && have_sm) {
+				remove_surround_master ();
 			}
 		}
 	} else if (p == "loop-fade-choice") {
