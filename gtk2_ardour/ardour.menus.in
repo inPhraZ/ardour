@@ -37,6 +37,7 @@
       </menu>
       <separator/>
       <menuitem action='toggle-session-options-editor'/>
+      <menuitem action='ToggleSurroundMaster'/>
 
       <menu name='MonitorMenu' action='MonitorMenu'>
         <menuitem action='UseMonitorSection'/>

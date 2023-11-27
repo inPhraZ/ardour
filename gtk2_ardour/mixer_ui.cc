@@ -90,6 +90,7 @@
 #include "mixer_group_tabs.h"
 #include "plugin_utils.h"
 #include "route_sorter.h"
+#include "surround_strip.h"
 #include "timers.h"
 #include "ui_config.h"
 #include "vca_master_strip.h"
@@ -131,6 +132,7 @@ Mixer_UI::Mixer_UI ()
 	, in_group_row_change (false)
 	, track_menu (0)
 	, _plugin_selector (0)
+	, _surround_strip (0)
 	, foldback_strip (0)
 	, _show_foldback_strip (true)
 	, _strip_width (UIConfiguration::instance().get_default_narrow_ms() ? Narrow : Wide)
@@ -421,6 +423,7 @@ Mixer_UI::Mixer_UI ()
 	MixerStrip::CatchDeletion.connect (*this, invalidator (*this), boost::bind (&Mixer_UI::remove_strip, this, _1), gui_context());
 	VCAMasterStrip::CatchDeletion.connect (*this, invalidator (*this), boost::bind (&Mixer_UI::remove_master, this, _1), gui_context());
 	FoldbackStrip::CatchDeletion.connect (*this, invalidator (*this), boost::bind (&Mixer_UI::remove_foldback, this, _1), gui_context());
+	SurroundStrip::CatchDeletion.connect (*this, invalidator (*this), boost::bind (&Mixer_UI::remove_surround_master, this, _1), gui_context());
 
 	/* handle escape */
 
@@ -443,6 +446,7 @@ Mixer_UI::~Mixer_UI ()
 {
 	monitor_section_detached ();
 
+	delete _surround_strip;
 	delete foldback_strip;
 	foldback_strip = 0;
 	delete _plugin_selector;
@@ -677,6 +681,14 @@ Mixer_UI::add_stripables (StripableList& slist)
 					continue;
 				}
 
+				if (route->is_surround_master ()) {
+					if (!_surround_strip) {
+						_surround_strip = new SurroundStrip (*this, _session, route);
+					}
+					out_packer.pack_start (*_surround_strip, false, false);
+					continue;
+				}
+
 				strip = new MixerStrip (*this, _session, route);
 				strip->set_selected (route->is_selected ());
 				strips.push_back (strip);
@@ -690,8 +702,7 @@ Mixer_UI::add_stripables (StripableList& slist)
 				show_strip (strip);
 
 				if (route->is_master()) {
-
-					out_packer.pack_start (*strip, false, false);
+					out_packer.pack_end (*strip, false, false);
 					strip->set_packed (true);
 
 				} else {
@@ -803,6 +814,22 @@ Mixer_UI::remove_strip (MixerStrip* strip)
 }
 
 void
+Mixer_UI::remove_surround_master (SurroundStrip* strip)
+{
+	if (_session && _session->deletion_in_progress()) {
+		/* its all being taken care of */
+		return;
+	}
+	assert (strip == _surround_strip);
+	out_packer.remove (*_surround_strip);
+	_surround_strip = 0;
+#if 0
+	Glib::RefPtr<ToggleAction> act = ActionManager::get_toggle_action ("Mixer", "ToggleSurroundMaster");
+	act->set_sensitive (false);
+#endif
+}
+
+void
 Mixer_UI::remove_foldback (FoldbackStrip* strip)
 {
 	if (_session && _session->deletion_in_progress()) {
@@ -864,6 +891,10 @@ Mixer_UI::sync_presentation_info_from_treeview ()
 			continue;
 		}
 		if (stripable->is_monitor() || stripable->is_auditioner()) {
+			assert (0);
+			continue;
+		}
+		if (stripable->is_surround_master()) {
 			assert (0);
 			continue;
 		}
@@ -1265,6 +1296,14 @@ Mixer_UI::set_session (Session* sess)
 
 	update_title ();
 
+	Glib::RefPtr<Action> act = ActionManager::get_action ("Mixer", "ToggleSurroundMaster");
+	if (act) {
+		act->set_sensitive (_session->vapor_barrier());
+
+		bool have_sm = (_session->surround_master() != nullptr);
+		Glib::RefPtr<ToggleAction>::cast_static(act)->set_active (have_sm);
+	}
+
 #if 0
 	/* skip mapping all session-config vars, we only need one */
 	boost::function<void (string)> pc (boost::bind (&Mixer_UI::parameter_changed, this, _1));
@@ -1445,6 +1484,9 @@ Mixer_UI::fast_update_strips ()
 		}
 		if (foldback_strip) {
 			foldback_strip->fast_update ();
+		}
+		if (_surround_strip) {
+			_surround_strip->fast_update ();
 		}
 	}
 }
@@ -3678,6 +3720,7 @@ Mixer_UI::register_actions ()
 #endif
 
 	ActionManager::register_toggle_action (group, X_("ToggleMonitorSection"), _("Mixer: Show Monitor Section"), sigc::mem_fun (*this, &Mixer_UI::toggle_monitor_section));
+	ActionManager::register_toggle_action (group, X_("ToggleSurroundMaster"), _("Mixer: Show Surround Master"), sigc::mem_fun (*this, &Mixer_UI::toggle_surround_master));
 
 	ActionManager::register_toggle_action (group, X_("ToggleFoldbackStrip"), _("Mixer: Show Foldback Strip"), sigc::mem_fun (*this, &Mixer_UI::toggle_foldback_strip));
 
@@ -4250,9 +4293,14 @@ Mixer_UI::screenshot (std::string const& filename)
 		vca_scroller_base.hide();
 	}
 
+	if (_surround_strip) {
+		out_packer.remove (*_surround_strip);
+		b.pack_start (*_surround_strip, false, false);
+		_surround_strip->hide_spacer (true);
+	}
 	if (master) {
 		out_packer.remove (*master);
-		b.pack_start (*master, false, false);
+		b.pack_end (*master, false, false);
 		master->hide_master_spacer (true);
 	}
 
@@ -4284,9 +4332,13 @@ Mixer_UI::screenshot (std::string const& filename)
 		vca_scroller_base.show();
 		vca_scroller.add (vca_hpacker);
 	}
+	if (_surround_strip) {
+		_surround_strip->hide_spacer (false);
+		out_packer.pack_start (*_surround_strip, false, false);
+	}
 	if (master) {
 		master->hide_master_spacer (false);
-		out_packer.pack_start (*master, false, false);
+		out_packer.pack_end (*master, false, false);
 	}
 	return true;
 }
@@ -4324,5 +4376,26 @@ Mixer_UI::toggle_monitor_action (MonitorChoice monitor_choice, bool group_overri
 			_session->set_controls (route_list_to_control_list (rl, &Stripable::monitoring_control), (double) mc, Controllable::UseGroup);
 		}
 
+	}
+}
+
+void
+Mixer_UI::toggle_surround_master ()
+{
+	if (!_session) {
+		return;
+	}
+
+	bool want_sm = ActionManager::get_toggle_action (X_("Mixer"), "ToggleSurroundMaster")->get_active();
+	bool have_sm = (_session->surround_master () != nullptr);
+
+	if (want_sm == have_sm) {
+		return;
+	}
+
+	if (want_sm) {
+		Config->set_use_surround_master (true);
+	} else {
+		Config->set_use_surround_master (false);
 	}
 }
