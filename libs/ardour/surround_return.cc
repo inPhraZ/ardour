@@ -34,6 +34,9 @@ SurroundReturn::SurroundReturn (Session& s)
 	, _current_n_objects (max_object_id)
 	, _in_map (ChanCount (DataType::AUDIO, 128))
 	, _out_map (ChanCount (DataType::AUDIO, 14))
+	, _exporting (false)
+	, _export_start (0)
+	, _export_end (0)
 {
 #if !(defined(LV2_EXTENDED) && defined(HAVE_LV2_1_10_0))
 	throw failed_constructor ();
@@ -191,6 +194,22 @@ SurroundReturn::run (BufferSet& bufs, samplepos_t start_sample, samplepos_t end_
 #endif
 	}
 
+	if (_exporting && _export_start >= start_sample && _export_start < end_sample) {
+#if defined(LV2_EXTENDED) && defined(HAVE_LV2_1_10_0)
+		//std::cout << "SURR START EXPORT " << start_sample << " <= " << _export_start << " < " << end_sample << "\n";
+		URIMap::URIDs const& urids = URIMap::instance ().urids;
+		forge_int_msg (urids.surr_ExportStart, urids.time_frame, _export_start - start_sample);
+#endif
+	}
+
+	if (_exporting && _export_end >= start_sample && _export_end < end_sample) {
+#if defined(LV2_EXTENDED) && defined(HAVE_LV2_1_10_0)
+		//std::cout << "SURR START EXPORT " << start_sample << " <= " << _export_end << " < " << end_sample << "\n";
+		URIMap::URIDs const& urids = URIMap::instance ().urids;
+		forge_int_msg (urids.surr_ExportStop, urids.time_frame, _export_end - start_sample);
+#endif
+	}
+
 	_surround_processor->connect_and_run (_surround_bufs, start_sample, end_sample, speed, _in_map, _out_map, nframes, 0);
 
 	BufferSet::iterator i = _surround_bufs.begin (DataType::AUDIO);
@@ -292,6 +311,24 @@ SurroundReturn::set_playback_offset (samplecnt_t cnt)
 			ss->set_delay_out (cnt);
 		}
 	}
+}
+
+void
+SurroundReturn::setup_export (std::string const& fn, samplepos_t ss, samplepos_t es)
+{
+	if (0 == _surround_processor->setup_export (fn.c_str())) {
+		_exporting = true;
+		_export_start = ss - effective_latency ();
+		_export_end = es - effective_latency ();
+	}
+}
+
+void
+SurroundReturn::finalize_export ()
+{
+	_surround_processor->finalize_export ();
+	_exporting = false;
+	_export_start = _export_end = 0;
 }
 
 XMLNode&

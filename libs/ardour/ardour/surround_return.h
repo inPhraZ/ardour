@@ -51,6 +51,13 @@ public:
 	void set_playback_offset (samplecnt_t cnt);
 	bool display_to_user () const { return false; }
 
+	void setup_export (std::string const&, samplepos_t, samplepos_t);
+	void finalize_export ();
+
+	std::shared_ptr<LV2Plugin> surround_processor () const {
+		return _surround_processor;
+	}
+
 	samplecnt_t signal_latency () const;
 
 protected:
@@ -74,6 +81,9 @@ private:
 	BufferSet        _surround_bufs;
 	ChanMapping      _in_map;
 	ChanMapping      _out_map;
+	bool             _exporting;
+	samplepos_t      _export_start;
+	samplepos_t      _export_end;
 	std::atomic<int> _flush;
 };
 
