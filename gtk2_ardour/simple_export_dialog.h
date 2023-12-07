@@ -57,6 +57,7 @@ private:
 	void close_dialog ();
 	void show_progress ();
 	void check_manager ();
+	void vapor_toggled ();
 	void set_error (std::string const&);
 	bool progress_timeout ();
 
@@ -80,6 +81,7 @@ private:
 	ExportPresetSelector _eps;
 	Gtk::Button*         _cancel_button;
 	Gtk::Button*         _export_button;
+	Gtk::CheckButton     _vapor_toggle;
 	Gtk::ComboBox        _range_combo;
 	Gtk::ComboBoxText    _post_export_combo;
 	Gtk::Label           _error_label;

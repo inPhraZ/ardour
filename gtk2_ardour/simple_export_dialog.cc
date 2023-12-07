@@ -47,6 +47,7 @@ SimpleExportDialog::SimpleExportDialog (PublicEditor& editor)
 	, ArdourDialog (_("Quick Audio Export"), true, false)
 	, _editor (editor)
 	, _eps (true)
+	, _vapor_toggle (_("Atmos Export"))
 {
 	if (_eps.the_combo ().get_parent ()) {
 		_eps.the_combo ().get_parent ()->remove (_eps.the_combo ());
@@ -66,16 +67,17 @@ SimpleExportDialog::SimpleExportDialog (PublicEditor& editor)
 	/* clang-format off */
 	t->attach (LBL ("Format preset:"),  0, 1, r, r + 1, FILL,          SHRINK, 0, 0);
 	t->attach (_eps.the_combo (),       1, 2, r, r + 1, EXPAND,        SHRINK, 0, 0);
+	t->attach (_vapor_toggle,           2, 3, r, r + 1, EXPAND,        SHRINK, 0, 0);
 	++r;
 	t->attach (LBL ("Export range:"),   0, 1, r, r + 1, FILL,          SHRINK, 0, 0);
-	t->attach (_range_combo,            1, 2, r, r + 1, EXPAND | FILL, SHRINK, 0, 0);
+	t->attach (_range_combo,            1, 3, r, r + 1, EXPAND | FILL, SHRINK, 0, 0);
 	++r;
 	t->attach (LBL ("After export:"),   0, 1, r, r + 1, FILL,          SHRINK, 0, 0);
-	t->attach (_post_export_combo,      1, 2, r, r + 1, EXPAND | FILL, SHRINK, 0, 0);
+	t->attach (_post_export_combo,      1, 3, r, r + 1, EXPAND | FILL, SHRINK, 0, 0);
 	++r;
-	t->attach (_error_label,            0, 2, r, r + 1, EXPAND | FILL, SHRINK, 0, 0);
+	t->attach (_error_label,            0, 3, r, r + 1, EXPAND | FILL, SHRINK, 0, 0);
 	++r;
-	t->attach (_progress_bar,           0, 2, r, r + 1, EXPAND | FILL, SHRINK, 0, 0);
+	t->attach (_progress_bar,           0, 3, r, r + 1, EXPAND | FILL, SHRINK, 0, 0);
 	/* clang-format on */
 
 #undef LBL
@@ -90,6 +92,8 @@ SimpleExportDialog::SimpleExportDialog (PublicEditor& editor)
 	_export_button = add_button (_("_Export"), RESPONSE_OK);
 	_cancel_button->signal_clicked ().connect (sigc::mem_fun (*this, &SimpleExportDialog::close_dialog));
 	_export_button->signal_clicked ().connect (sigc::mem_fun (*this, &SimpleExportDialog::start_export));
+
+	_vapor_toggle.signal_toggled ().connect (sigc::mem_fun (*this, &SimpleExportDialog::vapor_toggled));
 
 	_progress_bar.set_no_show_all (true);
 	_error_label.set_no_show_all (true);
@@ -147,6 +151,17 @@ SimpleExportDialog::set_session (ARDOUR::Session* s)
 	if (!check_outputs ()) {
 		set_error ("Error: Session has no master bus");
 		return;
+	}
+
+	if (s->surround_master ()) {
+		_vapor_toggle.set_sensitive (true);
+	} else if (s->vapor_barrier ()) {
+		_vapor_toggle.set_active (false);
+		_vapor_toggle.set_sensitive (false);
+	} else {
+		_vapor_toggle.set_active (false);
+		_vapor_toggle.set_sensitive (false);
+		_vapor_toggle.hide ();
 	}
 
 	/* check range */
@@ -222,6 +237,21 @@ SimpleExportDialog::check_manager ()
 	}
 
 	_export_button->set_sensitive (ok);
+}
+
+void
+SimpleExportDialog::vapor_toggled ()
+{
+	bool vape = _vapor_toggle.get_active ();
+	auto ts   = _manager->get_timespans ();
+
+	if (vape) {
+		std::string vapor = Glib::build_filename (SimpleExport::_session->session_directory ().export_path (), SimpleExport::_session->snap_name () + ".adm");
+		ts.front ()->timespans->front ()->set_vapor (vapor);
+	} else {
+		ts.front ()->timespans->front ()->set_vapor ("");
+	}
+	_eps.the_combo ().set_sensitive (!vape);
 }
 
 void
