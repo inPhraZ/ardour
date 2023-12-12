@@ -145,6 +145,7 @@ Route::Route (Session& sess, string name, PresentationInfo::Flag flag, DataType 
 
 	_pending_process_reorder.store (0);
 	_pending_listen_change.store (0);
+	_pending_surround_send.store (0);
 	_pending_signals.store (0);
 }
 
@@ -4167,6 +4168,15 @@ Route::apply_processor_changes_rt ()
 		 */
 		update_signal_latency (true);
 	}
+
+	if (_pending_surround_send.load ()) {
+		Glib::Threads::RWLock::WriterLock pwl (_processor_lock, Glib::Threads::TRY_LOCK);
+		if (pwl.locked()) {
+			_pending_surround_send.store (0);
+			emissions |= EmitSendReturnChange;
+		}
+	}
+
 	if (emissions != 0) {
 		_pending_signals.store (emissions);
 		return true;
@@ -4189,6 +4199,9 @@ Route::emit_pending_signals ()
 	}
 	if (sig & EmitRtProcessorChange) {
 		processors_changed (RouteProcessorChange (RouteProcessorChange::RealTimeChange)); /* EMIT SIGNAL */
+	}
+	if (sig & EmitSendReturnChange) {
+		processors_changed (RouteProcessorChange (RouteProcessorChange::SendReturnChange, false)); /* EMIT SIGNAL */
 	}
 
 	/* this would be a job for the butler.
@@ -6416,9 +6429,12 @@ Route::enable_surround_send ()
 		_surround_send->activate ();
 	}
 
-	/* set it up */
-	configure_processors (0);
-	processors_changed (RouteProcessorChange (RouteProcessorChange::SendReturnChange, false)); /* EMIT SIGNAL */
+	Glib::Threads::RWLock::WriterLock lm (_processor_lock);
+	configure_processors_unlocked (0, &lm);
+	/* We cannot emit `processors_changed` while holing the `process lock`
+	 * This can lead to deadlock in ARDOUR::Session::route_processors_changed
+	 */
+	_pending_surround_send.store (1);
 }
 
 void
@@ -6433,6 +6449,10 @@ Route::remove_surround_send ()
 
 	_surround_send.reset ();
 
-	configure_processors (0);
-	processors_changed (RouteProcessorChange (RouteProcessorChange::SendReturnChange, false)); /* EMIT SIGNAL */
+	Glib::Threads::RWLock::WriterLock lm (_processor_lock);
+	configure_processors_unlocked (0, &lm);
+	/* We cannot emit `processors_changed` while holing the `process lock`
+	 * This can lead to deadlock in ARDOUR::Session::route_processors_changed
+	 */
+	_pending_surround_send.store (1);
 }

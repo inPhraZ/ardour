@@ -684,13 +684,15 @@ protected:
 		EmitNone = 0x00,
 		EmitMeterChanged = 0x01,
 		EmitMeterVisibilityChange = 0x02,
-		EmitRtProcessorChange = 0x04
+		EmitRtProcessorChange = 0x04,
+		EmitSendReturnChange = 0x08
 	};
 
-	ProcessorList     _pending_processor_order;
-	std::atomic<int> _pending_process_reorder; // atomic
-	std::atomic<int> _pending_listen_change; // atomic
-	std::atomic<int> _pending_signals; // atomic
+	ProcessorList    _pending_processor_order;
+	std::atomic<int> _pending_process_reorder;
+	std::atomic<int> _pending_listen_change;
+	std::atomic<int> _pending_surround_send;
+	std::atomic<int> _pending_signals;
 
 	MeterPoint     _meter_point;
 	MeterPoint     _pending_meter_point;
