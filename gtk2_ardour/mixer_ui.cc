@@ -4394,8 +4394,8 @@ Mixer_UI::toggle_surround_master ()
 	}
 
 	if (want_sm) {
-		Config->set_use_surround_master (true);
+		_session->config.set_use_surround_master (true);
 	} else {
-		Config->set_use_surround_master (false);
+		_session->config.set_use_surround_master (false);
 	}
 }
