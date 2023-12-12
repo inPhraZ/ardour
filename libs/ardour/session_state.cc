@@ -4575,7 +4575,7 @@ Session::config_changed (std::string p, bool ours)
 		 * after restoring session state (if any),
 		 * via post_engine_init() -> Config->map_parameters()
 		 */
-		bool want_sm = Config->get_use_surround_master();
+		bool want_sm = config.get_use_surround_master();
 		bool have_sm = _surround_master ? true : false;
 		std::cerr << "have sm " << have_sm << " want sm " << want_sm << std::endl;
 		if (loading ()) {
@@ -4586,7 +4586,7 @@ Session::config_changed (std::string p, bool ours)
 			 * Update the config to reflect this.
 			 */
 			if (want_sm != have_sm) {
-				Config->set_use_surround_master (have_sm);
+				config.set_use_surround_master (have_sm);
 			}
 			SurroundMasterAddedOrRemoved (); /* EMIT SIGNAL */
 		} else  {
